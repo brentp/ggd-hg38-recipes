@@ -1,0 +1,27 @@
+attributes:
+    name: clinvar
+    version: 20160203
+    sha1: XXXXXX
+
+recipe:
+    full:
+        recipe_type: bash
+        recipe_cmds: |
+            wget -O - ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/clinvar_20160203.vcf.gz \
+            | vt decompose -s - \
+            | vt normalize -r ${GGD_DATA}/hg38.decoy.hla.fa - \
+            |  bgzip -c > ${name}.${version}.tidy.vcf.gz
+
+            tabix > ${name}.${version}.tidy.vcf.gz
+
+        dependencies:
+            -data:
+                hg38_reference:
+                    version: 1
+                    sha1: optional
+            -software:
+                - vt
+                - wget
+                - bgzip
+                - tabix
+                
