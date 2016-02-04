@@ -1,0 +1,25 @@
+attributes:
+    name: hg38_reference
+    version: 1 
+    sha1:
+        - c361b5ef5e926e78e79dc8e7336c6207603bf3b0
+        - 1dfc3a47f393b835bd00a8bf8d17fa91514a386d
+    description: |
+        This is the hg38 reference genome with the "chr" prefix removed.
+
+recipe:
+    full:
+        recipe_type: bash
+        recipe_cmds:
+            - wget -O - ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/GRCh38_full_analysis_set_plus_decoy_hla.fa | perl -pe 's/^>chr([^\s]+).*/>$1/' > hg38.decoy.hla.fa
+            - samtools faidx hg38.decoy.hla.fa
+        recipe_outfiles:
+            - hg38.decoy.hla.fa
+            - hg38.decoy.hla.fa.fai
+
+        dependencies:
+            -software:
+                - samtools
+                - perl
+
+
