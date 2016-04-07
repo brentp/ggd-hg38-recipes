@@ -1,0 +1,18 @@
+package:
+    name: clinvar
+    version: 20160203
+
+source:
+    fn: clinvar_20160203.vcf.gz
+    url: ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/archive/2016/clinvar_20160203.vcf.gz
+
+requirements:
+    build:
+        - reference 3
+
+
+build:
+    binary_relocation: false
+    # has_prefix_files:
+    detect_binary_files_with_prefix: false
+
