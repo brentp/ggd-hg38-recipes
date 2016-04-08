@@ -1,0 +1,11 @@
+package:
+    name: hg38-reference
+    version: 1 
+#source:
+#    fn: hg38.fa.gz
+#    url: ftp://ftp.ensembl.org/pub/release-84/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
+
+build:
+    binary_relocation: false
+    # has_prefix_files:
+    detect_binary_files_with_prefix: false
